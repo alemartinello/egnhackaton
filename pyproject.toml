@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "egnhackaton"
+version = "0.1.0"
+description = "Repo for hackaton"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.13"
+black = "^23.7.0"
+ruff = "^0.0.286"
+pytest = "^7.4.0"
+pre-commit = "^3.3.3"
+annoy = "1.17.3"
+pandas = "2.0.2"
+numpy = "1.24.3"
+openai = "0.27.7"
+tiktoken = "0.4.0"
+langchain = "0.0.244"
+llama-index = "=0.7.13"
+streamlit = "1.22.0"
+streamlit-chat = "0.0.2.2"
+streamlit-option-menu = "0.3.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
