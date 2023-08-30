@@ -1,0 +1,6 @@
+apikey.secret
+.venv
+.ruff_cache
+.vscode
+__pycache__
+
