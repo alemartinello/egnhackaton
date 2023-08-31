@@ -51,11 +51,15 @@ def retrieve_from_indices(indices:list):
 
 	original_text = json.load(open('hackathon_data/queens_speeches/embeddings_data/datafile.json'))
 
-	max_l = len(original_text[0])
+	input_flat = []
+	for l in original_text:
+		for ll in l:
+			input_flat.append(ll)
+
 	selected_statements = []
 
 	for i in indices:
-		selected_statements.append(original_text[0][i])
+		selected_statements.append(input_flat[i])
 	return selected_statements
 
 
