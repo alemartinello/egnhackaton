@@ -51,15 +51,15 @@ def retrieve_from_indices(indices:list):
 
 	original_text = json.load(open('hackathon_data/queens_speeches/embeddings_data/datafile.json'))
 
-	input_flat = []
-	for l in original_text:
-		for ll in l:
-			input_flat.append(ll)
+	input_flat = original_text
+	# for l in original_text:
+	# 	for ll in l:
+	# 		input_flat.append(ll)
 
 	selected_statements = []
 
 	for i in indices:
-		selected_statements.append(input_flat[i])
+		selected_statements.append(input_flat[i]['txt'])
 	return selected_statements
 
 
@@ -77,10 +77,10 @@ if __name__=='__main__':
 		embeddings = pickle.load(open(args.output, 'rb'))
 	else:
 		input_data = json.load(open(args.input_json))
-		input_flat = []
-		for l in input_data:
-			for ll in l:
-				input_flat.append(ll)
+		input_flat = input_data
+		# for l in input_data:
+		# 	for ll in l:
+		# 		input_flat.append(ll)
 
 		embeddings = process_batch_data(input_flat)
 		pickle.dump(embeddings, open(args.output,'wb'))
