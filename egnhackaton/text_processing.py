@@ -35,7 +35,6 @@ def process_batch_data(input_chunks):
 	"""
 	embeddings = []
 	for chunk in input_chunks:
-		print(chunk)
 		embeddings.append(get_embedding_from_input(chunk['txt']))
 	return embeddings
 
@@ -74,7 +73,12 @@ if __name__=='__main__':
 		embeddings = pickle.load(open(args.output, 'rb'))
 	else:
 		input_data = json.load(open(args.input_json))
-		embeddings = process_batch_data(input_data[0])
+		input_flat = []
+		for l in input_data:
+			for ll in l:
+				input_flat.append(ll)
+
+		embeddings = process_batch_data(input_flat)
 		pickle.dump(embeddings, open(args.output,'wb'))
 	for element in retrieve_from_indices([0,1,5]):
 		print(element)
