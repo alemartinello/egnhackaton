@@ -1,6 +1,7 @@
 import json
 import openai
 import numpy as np
+import pickle
 
 # Setup azure openai
 openai.api_type = "azure"
@@ -41,6 +42,7 @@ def process_batch_data(input_chunks):
 
 def load_embeddings():
 	embeddings = pickle.load(open('./embeddings.pckl','rb'))
+	return embeddings
 
 
 def retrieve_from_indices(indices:list):
@@ -48,7 +50,7 @@ def retrieve_from_indices(indices:list):
 	text snippets from the original tex
 	"""
 
-	original_text = json.load(open('../../hackathon_data/queens_speeches/embeddings_data/datafile-18318495166876.json'))
+	original_text = json.load(open('hackathon_data/queens_speeches/embeddings_data/datafile.json'))
 
 	max_l = len(original_text[0])
 	selected_statements = []

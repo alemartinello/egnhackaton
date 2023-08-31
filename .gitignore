@@ -3,4 +3,4 @@ apikey.secret
 .ruff_cache
 .vscode
 __pycache__
-queen_speeches
+queens_speeches

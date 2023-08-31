@@ -2,6 +2,7 @@
 """
 import numpy as np
 import string
+import egnhackaton.text_processing
 
 
 def get_api_key():
@@ -23,20 +24,31 @@ def get_response_real(input, vector_database, closest=None):
         closest = 3
 
     # transform input in vector/embedding (Etienne)
-    input_embedding = get_embedding_from_input(strip_input(input))
+    input_embedding = egnhackaton.text_processing.get_embedding_from_input(strip_input(input))
 
     # From vector find closest n vectors (Alessandro)
     closest_vectors_index = closest_vectors_indexes(input_embedding, vector_database, closest=closest)
 
     # Get text from vector index
+    # evt think of string.join() ing it
+    context = egnhackaton.text_processing.retrieve_from_indices(closest_vectors_index)
+    context = " ".join([par['txt'] for par in context][0])
 
     # Construct prompt
+    prompt = construct_prompt_to_chatgpt(input, context)
 
     # Send prompt to gpt
     
     # Return answer
 
-    return
+    return prompt
+
+
+def construct_prompt_to_chatgpt(input, context):
+    prompt =  f"""
+    Spørgsmalet er {input}. Din kontekst er {context}. Giv et kort svar.
+    """.strip()
+    return prompt
 
 
 def strip_input(input):
@@ -58,4 +70,4 @@ def closest_vectors_indexes(input, db, closest=None):
         closest = 3
     similarities = np.array([cosine_similarity(input, i) for i in db])
 
-    return np.argpartition(similarities, -2)[-2:]
+    return np.argpartition(similarities, -closest)[-closest:]
