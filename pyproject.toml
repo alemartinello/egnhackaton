@@ -21,6 +21,7 @@ llama-index = "=0.7.13"
 streamlit = "1.22.0"
 streamlit-chat = "0.0.2.2"
 streamlit-option-menu = "0.3.6"
+jupyterlab = "^4.0.5"
 
 
 [build-system]
