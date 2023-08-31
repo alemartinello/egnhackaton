@@ -3,15 +3,13 @@ from streamlit_chat import message
 import egnhackaton.chatengine
 import egnhackaton.text_processing
 
-st.title("Our super cool chat app")
+st.title("Welcome to MargretheGPT!")
 
-st.write(
-    """
-    Ought we to write something here?
-    """
-)
+st.image("dronning-margrethe-nytar.jpg")
 
 # See https://github.com/AI-Yash/st-chat/blob/main/examples/chatbot.py for inspiration
+
+temperature = st.slider("Margrethes humør", min_value=0.0, max_value=1.0, value=0.1)
 
 db = egnhackaton.text_processing.load_embeddings()
 
@@ -53,7 +51,7 @@ st.button("Clear chat", on_click=on_btn_click)
 
 
 if user_input:
-    output = egnhackaton.chatengine.get_response_real(user_input, db)
+    output = egnhackaton.chatengine.get_response_real(user_input, db, temperature=temperature)
 
     st.session_state.history.append(user_input)
     st.session_state.generated.append(output)
