@@ -2,8 +2,7 @@ Install environment with command ```pip install .```
 
 You can find examples on how to embed data and use ChatGPT 3.5 in the ```chatGPTexamples.py``` file
 
-# Key and models
-azure_openai_key = ff9de7d753b5443b9846bfb3de8e6edb
+# Models
 azure_openai_endpoint = https://cs-openai-us-jml.openai.azure.com/
 
 embedding_model = text-embedding-ada-002
