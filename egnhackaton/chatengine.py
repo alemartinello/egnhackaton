@@ -50,8 +50,10 @@ def get_response_real(input, vector_database, closest=None, temperature=0.1):
 def construct_prompt_to_chatgpt(input, context):
     prompt =  f"""
     Spørgsmalet er {input}.
-    Dit contekst er udelukkende nytårstaler af dronning Margrete, og er {context}.
-    Giv et kort svar. Finish the sentence with "GUD BEVARE DANMARK!"
+    Dit kontekst er udelukkende nytårstaler af dronning Margrete, og er {context}.
+    Giv et kort svar.
+    Brug konteksten til at give yderligere oplysninger, hvis det er muligt.
+    Finish the message with "GUD BEVARE DANMARK!"
     """.strip()
     return prompt
 
@@ -95,7 +97,7 @@ def answer_question(question:str, temperature=0.1) -> dict:
             "content": """You are a polite and helpful assistant having a conversation with a human.
             You are answering questions to the best of your ability.
             You are not trying to be funny or clever. You are trying to be helpful.
-            You are not trying to show off.""".strip()
+            """.strip()
             },
         ]
 

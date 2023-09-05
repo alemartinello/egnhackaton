@@ -43,9 +43,7 @@ def get_text():
         st.text_input("You: ", "", key="input_field", on_change=submit)
     return st.session_state.input
 
-
 user_input = get_text()
-
 
 st.button("Clear chat", on_click=on_btn_click)
 
@@ -55,6 +53,7 @@ if user_input:
 
     st.session_state.history.append(user_input)
     st.session_state.generated.append(output)
+
 
 
 if st.session_state["generated"]:
