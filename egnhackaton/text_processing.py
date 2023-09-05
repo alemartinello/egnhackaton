@@ -2,12 +2,15 @@ import json
 import openai
 import numpy as np
 import pickle
+from egnhackaton.utils import get_api_key
 
-# Setup azure openai
-openai.api_type = "azure"
-openai.api_base = "https://cs-openai-us-jml.openai.azure.com/"
-openai.api_version = "2023-05-15"
-openai.api_key = "ff9de7d753b5443b9846bfb3de8e6edb"
+
+# openai.api_type = "azure"
+# openai.api_base = "https://cs-openai-us-jml.openai.azure.com/"
+# openai.api_version = "2023-05-15"
+openai.api_key = f"{get_api_key()}"
+print(get_api_key())
+
 
 EMBEDDING_DTYPE = np.float32
 
@@ -66,7 +69,6 @@ def retrieve_from_indices(indices:list):
 if __name__=='__main__':
 	import os
 	import argparse
-	import pickle
 
 	parser = argparse.ArgumentParser('produce embeddings')
 	parser.add_argument('-i','--input-json', help='name of json file', default='./example.json')

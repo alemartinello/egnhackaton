@@ -4,19 +4,9 @@ import numpy as np
 import string
 import egnhackaton.text_processing
 import openai
+from egnhackaton.utils import get_api_key
 
-# Setup azure openai
-openai.api_type = "azure"
-openai.api_base = "https://cs-openai-us-jml.openai.azure.com/"
-openai.api_version = "2023-05-15"
-openai.api_key = "ff9de7d753b5443b9846bfb3de8e6edb"
-
-
-def get_api_key():
-    """
-    Read content of file `apikey.secret` and returns it as string
-    """
-    return open("apikey.secret", "r").read()
+openai.api_key = get_api_key()
 
 
 def get_response(input):
@@ -110,10 +100,10 @@ def answer_question(question:str, temperature=0.1) -> dict:
         ]
 
     # Add question to conversation
-    messages = selected_conversation_hist + [{"role": "user", "content":question}]
+    messages = selected_conversation_hist + [{"role": "user", "content": question}]
 
     raw_answer = openai.ChatCompletion.create(
-        engine="gpt-35-turbo",
+        model="gpt-3.5-turbo",
         messages=messages,
         temperature = temperature
     )
